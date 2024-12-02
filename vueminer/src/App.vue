@@ -1,7 +1,7 @@
 <script setup>
 import Navbar from './components/Navbar.vue';
 import { AppState } from './AppState.js';
-
+import MoonMiner from './components/MoonMiner.vue'
 </script>
 
 <template>
