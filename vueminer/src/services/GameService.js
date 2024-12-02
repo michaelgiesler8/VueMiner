@@ -14,4 +14,13 @@ class GameService {
     AppState.totalCollected += multiplier
   }
 
+  collectAutoUpgrades() {
+    let autoAmount = 0
+    AppState.autoUpgrades.forEach(upgrade => {
+      autoAmount += (upgrade.multiplier * upgrade.quantity)
+    })
+    AppState.cheese += autoAmount
+    AppState.totalCollected += autoAmount
+  }
+
 
