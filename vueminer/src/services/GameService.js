@@ -23,4 +23,13 @@ class GameService {
     AppState.totalCollected += autoAmount
   }
 
+  buyUpgrade(upgrade) {
+    if (AppState.cheese >= upgrade.price) {
+      AppState.cheese -= upgrade.price
+      upgrade.quantity++
+      upgrade.price = Math.floor(upgrade.price * 1.2)
+    }
+  }
+}
 
+export const gameService = new GameService()
