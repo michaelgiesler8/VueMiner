@@ -1,7 +1,7 @@
 <script setup>
 import { computed, onMounted } from 'vue'
 import { AppState } from '../AppState.js'
-import { gameService } from '../service/GameService.js'
+import { gameService } from '../services/GameService.js'
 
 const cheese = computed(() => AppState.cheese)
 const clickUpgrades = computed(() => AppState.clickUpgrades)
@@ -49,7 +49,7 @@ onMounted(() => {
     <div class="row">
       <div class="col-md-6">
         <h4>Click Upgrades</h4>
-        <div v-for="upgrade in clickUpgrades" :key="upgrade.id" class="mb-2">
+        <div v-for="upgrade in clickUpgrades" :key="upgrade.id">
           <button class="btn btn-primary w-100" @click="buyUpgrade(upgrade)" :disabled="cheese < upgrade.price">
             <img :src="upgrade.image" :alt="upgrade.name" class="upgrade-icon">
             {{ upgrade.name }} (+{{ upgrade.multiplier }}/3s) - {{ upgrade.price }} Cheese
@@ -57,6 +57,17 @@ onMounted(() => {
         </div>
       </div>
     </div>
+
+    <div class="col-md-6">
+      <h4>Automatic Upgrades</h4>
+      <div v-for="upgrade in autoUpgrades" :key="upgrade.id">
+        <button class="btn btn-danger w-100 mb-2" @click="buyUpgrade(upgrade)" :disabled="cheese < upgrade.price">
+          {{ upgrade.name }} (+{{ upgrade.multiplier }}/3s) - {{ upgrade.price }} Cheese
+        </button>
+      </div>
+    </div>
+
+
 
     <div class="row mt-4">
       <div class="col-md-6">
